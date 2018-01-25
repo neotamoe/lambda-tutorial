@@ -23,6 +23,7 @@ package org.adoptopenjdk.lambda.tutorial.exercise1;
  */
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A collection of functions which should be filled out to make tests pass.
@@ -48,7 +49,7 @@ public class Shapes {
      * @see Shape#setColor(Color)
      */
     public static void colorAll(List<Shape> shapes, Color newColor) {
-        // [your code here]
+        shapes.forEach(n -> n.setColor(newColor));
     }
 
     /**
@@ -68,7 +69,7 @@ public class Shapes {
      * @see Shape#toString()
      */
     public static void makeStringOfAllColors(List<Shape> shapes, StringBuilder stringBuilder) {
-        // [your code here]
+        shapes.forEach(n -> stringBuilder.append(n.toString()));
     }
 
     /**
@@ -94,5 +95,9 @@ public class Shapes {
      */
     public static void changeColorAndMakeStringOfOldColors(List<Shape> shapes, Color newColor, StringBuilder stringBuilder) {
         // [your code here]
+        shapes.forEach(n -> {
+            stringBuilder.append(n.toString());
+            n.setColor(newColor);
+        });
     }
 }
