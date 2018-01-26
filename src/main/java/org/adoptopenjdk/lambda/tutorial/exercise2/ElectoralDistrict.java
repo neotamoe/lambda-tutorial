@@ -25,6 +25,7 @@ package org.adoptopenjdk.lambda.tutorial.exercise2;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Some (inaccurate) London electrical districts
@@ -54,9 +55,9 @@ public enum ElectoralDistrict {
      * @return filtered set of registered voters in a district
      */
     public static Set<RegisteredVoter> votersIn(ElectoralDistrict district, Collection<RegisteredVoter> voters) {
-        // [your code here]
-
-        return Collections.emptySet();
+//        First return (line below) was written to satisfy the first test.  Upon seeing the fourth test, I rewrote the original return and replaced with final return below.
+//        return voters.stream().filter(voter -> voter.getElectorId().contains(district.getPrefix())).collect(Collectors.toSet());
+        return Collections.unmodifiableSet(voters.stream().filter(voter->voter.getElectorId().contains(district.getPrefix())).collect(Collectors.toSet()));
     }
 
     /**
@@ -66,9 +67,7 @@ public enum ElectoralDistrict {
      * @return filtered set of unspoiled ballots
      */
     public static Set<Ballot> unspoiledBallots(Set<Ballot> ballots) {
-        // [your code here]
-
-        return Collections.emptySet();
+        return ballots.stream().filter(ballot -> ballot.getParty()!=null).collect(Collectors.toSet());
     }
 
     public String getPrefix() {
