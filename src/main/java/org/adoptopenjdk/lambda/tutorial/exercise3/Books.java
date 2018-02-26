@@ -22,6 +22,7 @@ package org.adoptopenjdk.lambda.tutorial.exercise3;
  * #L%
  */
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -40,9 +41,7 @@ public class Books {
      * @return list of book titles
      */
     public static List<String> titlesOf(List<Book> books) {
-        // [your code here]
-        
-        return Collections.emptyList();
+        return books.stream().map(book -> book.getTitle()).collect(Collectors.toList());
     }
 
     /**
@@ -53,8 +52,7 @@ public class Books {
      */
     public static List<String> namesOfAuthorsOf(List<Book> books) {
         // [your code here]
-        
-        return Collections.emptyList();
+        return books.stream().map(book -> book.getAuthor().fullName()).collect(Collectors.toList());
     }
 
     /**
@@ -65,7 +63,6 @@ public class Books {
      */
     public static Set<Publisher> publishersRepresentedBy(List<Book> books) {
         // [your code here]
-
-        return Collections.emptySet();
+        return books.stream().map(book -> book.getPublisher()).collect(Collectors.toSet());
     }
 }
