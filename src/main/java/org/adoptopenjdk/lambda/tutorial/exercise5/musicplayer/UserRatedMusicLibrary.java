@@ -24,6 +24,11 @@ package org.adoptopenjdk.lambda.tutorial.exercise5.musicplayer;
 
 public interface UserRatedMusicLibrary extends MusicLibrary {
 
+    @Override
+    default Rating ratingOf(Song song) {
+        return new StarRatingConverter().convert(userRatingOf(song));
+    }
+
     StarRating userRatingOf(Song song);
 
     static class StarRatingConverter {

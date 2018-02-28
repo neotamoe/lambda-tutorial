@@ -29,6 +29,10 @@ import static java.util.stream.Collectors.toList;
 
 public interface MusicLibrary {
 
+    default List<Song> sortedByArtist () {
+        return SongByArtistSorter.sort(allSongs());
+    }
+
     /**
      * @return every song in the collection, in no specified order.
      */
